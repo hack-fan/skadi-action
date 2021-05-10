@@ -4,6 +4,9 @@ inputs:
   token:
     description: 'ServerRun User Token'
     required: true
+  status:
+    description: 'Job status, auto use github.job.status'
+    default: ${{ github.job.status }}
   success:
     description: 'Notification text if success'
     default: 'Action Success'
@@ -20,7 +23,7 @@ runs:
   image: 'ghcr.io/hack-fan/skadi-action'
   args:
     - ${{ inputs.token }}
-    - ${{ github.job.status }}
+    - ${{ inputs.status }}
     - ${{ inputs.success }}
     - ${{ inputs.failed }}
     - ${{ inputs.command }}
