@@ -1,5 +1,7 @@
 name: 'ServerFan Notifier'
-description: 'Send notify or command to server.fan service'
+description: 'Send notification or deploy command to server.fan service'
+icon: 'bell'
+color: 'blue'
 inputs:
   token:
     description: 'ServerRun User Token'
