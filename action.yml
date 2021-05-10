@@ -1,0 +1,27 @@
+name: 'ServerFan Notifier'
+description: 'Send notify or command to server.fan service'
+inputs:
+  token:
+    description: 'ServerRun User Token'
+    required: true
+  success:
+    description: 'Notification text if success'
+    default: 'Action Success'
+  failed:
+    description: 'Error text if failed'
+    default: 'Action Failed'
+  command:
+    description: 'Command to server.fan if you need'
+  source:
+    description: 'Notification source, default is your repo name'
+    default: ${{ github.repository }}
+runs:
+  using: 'docker'
+  image: 'ghcr.io/hack-fan/skadi-action'
+  args:
+    - ${{ inputs.token }}
+    - ${{ success() }}
+    - ${{ inputs.success }}
+    - ${{ inputs.failed }}
+    - ${{ inputs.command }}
+    - ${{ inputs.source }}
