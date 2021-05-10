@@ -35,10 +35,10 @@ jobs:
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
-#      -
-#        name: Notification
-#        uses: hack-fan/skadi-action@v1
-#        with:
-#          token: ${{ secrets.SKADI_TOKEN }}
-#          success: 'skadi-action build success'
-#          failed: 'skadi-action build failed'
+      -
+        name: Notification
+        uses: hack-fan/skadi-action@v1
+        with:
+          token: ${{ secrets.SKADI_TOKEN }}
+          success: 'skadi-action build success'
+          failed: 'skadi-action build failed'
