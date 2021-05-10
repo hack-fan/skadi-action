@@ -3,7 +3,7 @@ name: ci
 on:
   push:
     tags:
-      - "v*"
+      - "v\d"
 
 jobs:
   main:
@@ -35,3 +35,10 @@ jobs:
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+      -
+        name: Notification
+        uses: hack-fan/skadi-action@v1
+        with:
+          token: ${{ secrets.SKADI_TOKEN }}
+          suceess: 'skadi-action build success'
+          failed: 'skadi-action build failed'
