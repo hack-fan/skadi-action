@@ -6,7 +6,7 @@ inputs:
     required: true
   status:
     description: 'Job status, auto use github.job.status'
-    default: ${{ github.job.status }}
+    default: ${{ job.status }}
   success:
     description: 'Notification text if success'
     default: 'Action Success'
