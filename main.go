@@ -43,11 +43,11 @@ func main() {
 	// run
 	if status == "success" {
 		sendNotify(source, success)
+		if command != "" {
+			sendCommand(command)
+		}
 	} else {
 		sendError(source, failed)
-	}
-	if command != "" {
-		sendCommand(command)
 	}
 }
 
