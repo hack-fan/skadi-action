@@ -20,7 +20,7 @@ inputs:
     default: ${{ github.repository }}
 runs:
   using: 'docker'
-  image: 'ghcr.io/hack-fan/skadi-action'
+  image: 'docker://ghcr.io/hack-fan/skadi-action'
   args:
     - ${{ inputs.token }}
     - ${{ inputs.status }}
