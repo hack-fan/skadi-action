@@ -20,7 +20,7 @@ runs:
   image: 'ghcr.io/hack-fan/skadi-action'
   args:
     - ${{ inputs.token }}
-    - ${{ success() }}
+    - ${{ job.status }}
     - ${{ inputs.success }}
     - ${{ inputs.failed }}
     - ${{ inputs.command }}

@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"reflect"
-	"strconv"
 	"time"
 
 	"github.com/go-resty/resty/v2"
@@ -18,8 +16,8 @@ var rest = resty.New().SetRetryCount(3).
 // args:
 // 1. user token (required)
 // 2. status (required, auto input by action)
-// 3. notify
-// 4. error
+// 3. success
+// 4. failed
 // 5. command
 // 6. source
 func main() {
@@ -30,9 +28,8 @@ func main() {
 	// inputs
 	var token = os.Args[1]
 	var status = os.Args[2]
-	fmt.Println("status:", reflect.TypeOf(status), ",", status) // debug
-	var notify = os.Args[3]
-	var errstr = os.Args[4]
+	var success = os.Args[3]
+	var failed = os.Args[4]
 	var command = os.Args[5]
 	var source = os.Args[6]
 	if source == "" {
@@ -44,15 +41,10 @@ func main() {
 	}
 	rest = rest.SetAuthToken(token)
 	// run
-	success, err := strconv.ParseBool(status)
-	if err != nil {
-		fmt.Println("bad status arg, may be github action change it success() api")
-		os.Exit(1)
-	}
-	if success {
-		sendNotify(source, notify)
+	if status == "success" {
+		sendNotify(source, success)
 	} else {
-		sendError(source, errstr)
+		sendError(source, failed)
 	}
 	if command != "" {
 		sendCommand(command)
