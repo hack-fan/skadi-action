@@ -38,6 +38,7 @@ jobs:
       -
         name: Notification
         uses: hack-fan/skadi-action@v1
+        if: ${{ always() }}
         with:
           token: ${{ secrets.SKADI_TOKEN }}
           success: 'skadi-action build success'

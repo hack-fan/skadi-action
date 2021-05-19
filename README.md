@@ -16,9 +16,12 @@ Learn more about [server.fan](https://server.fan/docs)
 
 ## Example
 
+Don't forget if conditionals, for running after action failed.
+
 ```yaml
 - name: Notification
   uses: hack-fan/skadi-action@v1
+  if: ${{ always() }}
   with:
     token: ${{ secrets.SKADI_TOKEN }}
     success: 'Success'
